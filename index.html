@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Секретний доступ</title>
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-<style>
-  body { font-family: Arial, sans-serif; background: #121212; color: #eee; text-align: center; padding: 50px; }
-  input { padding: 10px; font-size: 16px; width: 250px; }
-  button { padding: 10px 20px; font-size: 16px; margin-left: 10px; cursor: pointer; }
-  #qrcode { margin-top: 20px; }
-  #error { color: #f44336; margin-top: 10px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Таємний портал</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #eee;
+      text-align: center;
+      padding: 50px;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      width: 300px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background: crimson;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #qr-container {
+      margin-top: 40px;
+      display: none;
+    }
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Введи секретний пароль</h1>
-<input type="password" id="passwordInput" placeholder="Пароль" />
-<button onclick="checkPassword()">Перевірити</button>
+  <h1>Введіть код доступу</h1>
+  <input type="password" id="password" placeholder="Введіть пароль..." />
+  <br/>
+  <button onclick="checkPassword()">Відкрити</button>
 
-<div id="error"></div>
-<div id="qrcode"></div>
+  <div id="qr-container">
+    <h2>🔓 Доступ дозволено</h2
 
-<script>
-  const correctPassword = "214506551423";
-
-  function checkPassword() {
-    const input = document.getElementById("passwordInput").value;
-    const errorDiv = document.getElementById("error");
-    const qrDiv = document.getElementById("qrcode");
-    errorDiv.textContent = "";
-    qrDiv.innerHTML = "";
-
-    if (input === correctPassword) {
-      const qrText = "https://example.com/секретна_інформація"; // заміни це на свій URL чи текст
-      QRCode.toCanvas(document.createElement('canvas'), qrText, function (error, canvas) {
-        if (error) {
-          errorDiv.textContent = "Помилка генерації QR-коду";
-          return;
-        }
-        qrDiv.appendChild(canvas);
-      });
-    } else {
-      errorDiv.textContent = "Невірний пароль! Спробуй ще раз.";
-    }
-  }
-</script>
-
-</body>
-</html>
